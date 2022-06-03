@@ -7,12 +7,12 @@ namespace Kaffeemaschine.Controllers
     public class KaffeemaschinenController : ControllerBase
     {
 
-        public static KaffeemaschieneClass kaffemaschine = new KaffeemaschieneClass();
+        public KaffeemaschieneClass kaffemaschine;
         private readonly ILogger<KaffeemaschinenController> _logger;
         
-        public KaffeemaschinenController(ILogger<KaffeemaschinenController> logger)
+        public KaffeemaschinenController(KaffeemaschieneClass _kaffemaschine)
         {
-            _logger = logger;
+            kaffemaschine = _kaffemaschine;
         }
 
         [HttpGet]
@@ -47,9 +47,12 @@ namespace Kaffeemaschine.Controllers
 
         [HttpPost]
         [Route("kaffeeMachen/")]
-        public bool KaffeeMachen(decimal menge, decimal verhaeltnisWasserBohnen)
+        public IActionResult KaffeeMachen(decimal menge, decimal verhaeltnisWasserBohnen)
         {
-            return kaffemaschine.macheKaffee(menge, verhaeltnisWasserBohnen);
+            bool worked = kaffemaschine.macheKaffee(menge, verhaeltnisWasserBohnen);
+            if (worked)
+                return Ok("kaffee was made, " + kaffemaschine.Wasser + "kg Wasser sind übrig und " + kaffemaschine.Bohnen + "kg sind übrig");
+            return Problem("couldn't make coffee");
         }
     }
 }

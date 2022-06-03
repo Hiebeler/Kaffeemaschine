@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Kaffeemaschine
 {
     public class KaffeemaschieneClass
@@ -41,16 +43,7 @@ namespace Kaffeemaschine
             if (verhaeltnisWasserBohnen > 1)
             {
                 _Wasser = menge * (verhaeltnisWasserBohnen / (verhaeltnisWasserBohnen + 1));
-                _Bohnen = menge * (1 / (verhaeltnisWasserBohnen + 1));
-            } else if (verhaeltnisWasserBohnen < 1)
-            {
-                _Bohnen = menge * (verhaeltnisWasserBohnen / verhaeltnisWasserBohnen + 1);
-                _Wasser = menge * (1 / verhaeltnisWasserBohnen + 1);
-            }
-            else
-            {
-                _Bohnen = menge / 2;
-                _Wasser = menge / 2;
+                _Bohnen = menge - _Wasser;
             }
 
             if (_Bohnen > Convert.ToDecimal(Bohnen) || _Wasser > Convert.ToDecimal(Wasser))

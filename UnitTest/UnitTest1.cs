@@ -13,7 +13,7 @@ namespace UnitTest
             KaffeemaschieneClass kaffeemaschiene = new KaffeemaschieneClass();
             kaffeemaschiene.wasserAuffuellen(2);
             kaffeemaschiene.bohnenAuffuellen(2);
-            kaffeemaschiene.macheKaffee((decimal)0.2, 2);
+            kaffeemaschiene.macheKaffee((decimal)0.15, (decimal)2);
             Assert.IsTrue(kaffeemaschiene.Wasser == 1.9);
         }
     }
