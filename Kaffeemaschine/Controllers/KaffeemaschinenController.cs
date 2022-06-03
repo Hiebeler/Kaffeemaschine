@@ -10,9 +10,10 @@ namespace Kaffeemaschine.Controllers
         public KaffeemaschieneClass kaffemaschine;
         private readonly ILogger<KaffeemaschinenController> _logger;
         
-        public KaffeemaschinenController(KaffeemaschieneClass _kaffemaschine)
+        public KaffeemaschinenController(ILogger<KaffeemaschinenController> iLogger, KaffeemaschieneClass _kaffemaschine)
         {
             kaffemaschine = _kaffemaschine;
+            _logger = iLogger;
         }
 
         [HttpGet]
